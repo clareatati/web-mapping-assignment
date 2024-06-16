@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Project Ideas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home">
+        <h1>My Project Ideas</h1>
+        <div>
+            <label for="filter">Filter Projects:</label>
+            <input type="text" id="filter" placeholder="Type to filter projects">
+        </div>
+        <div id="project-tabs">
+            <button class="tab-button" onclick="showTab('all')">All</button>
+            <button class="tab-button" onclick="showTab('web')">Web Development</button>
+            <button class="tab-button" onclick="showTab('data')">Data Science</button>
+            <button class="tab-button" onclick="showTab('mobile')">Mobile Apps</button>
+        </div>
+        <div id="project-list">
+            <div class="project" data-category="web">
+                <h2>Book Recommendation Web Application</h2>
+                <p>This web application recommends books to users based on their preferences and reading history. Users can create profiles where they input their favorite genres, authors, and books they've enjoyed in the past. The system uses this information to suggest new books that match their tastes. Key features include:</p>
+                <ul>
+                    <li>User authentication</li>
+                    <li>A dashboard to manage profiles and preferences</li>
+                    <li>A recommendation engine utilizing algorithms like collaborative filtering or content-based filtering</li>
+                    <li>Book summaries, ratings, and links to purchase or borrow books from online platforms</li>
+                </ul>
+                <a href="#">Read more</a>
+            </div>
+            <!-- Add more projects as needed -->
+        </div>
+    </section>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about">
+        <h1>About Me</h1>
+        <p>Hello! My name is Atati Clare.</p>
+        <p>I am a 5th-year student at JKUAT studying GEGIS. My hobbies include reading, cooking, and hiking.</p>
+        
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 1em;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    padding: 2em;
+    background-color: #fff;
+    margin: 1em;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#filter {
+    margin-bottom: 1em;
+}
+
+#project-tabs {
+    margin-bottom: 1em;
+}
+
+.tab-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.tab-button:hover {
+    background-color: #0056b3;
+}
+
+.project {
+    border: 1px solid #ccc;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 0.5em 0 0.2em 0;
+}
+
+form input, form textarea {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 0.5em;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const filterInput = document.getElementById('filter');
+    const projects = document.querySelectorAll('.project');
+
+    filterInput.addEventListener('keyup', function() {
+        const filterValue = filterInput.value.toLowerCase();
+        projects.forEach(project => {
+            const title = project.querySelector('h2').innerText.toLowerCase();
+            if (title.includes(filterValue)) {
+                project.style.display = '';
+            } else {
+                project.style.display = 'none';
+            }
+        });
+    });
+
+    window.showTab = (category) => {
+        projects.forEach(project => {
+            if (category === 'all' || project.dataset.category === category) {
+                project.style.display = '';
+            } else {
+                project.style.display = 'none';
+            }
+        });
+    };
+});
